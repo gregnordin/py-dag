@@ -37,6 +37,18 @@ def test_add_edge():
     assert dag.graph == {'a': set('b'), 'b': set()}
 
 
+def test_from_dict_at_instantiation():
+    temp_dict =   {'a': ['b', 'c'],
+                   'b': ['d'],
+                   'c': ['d'],
+                   'd': []}
+    dag = DAG(temp_dict)
+    assert dag.graph == {'a': set(['b', 'c']),
+                         'b': set('d'),
+                         'c': set('d'),
+                         'd': set()}
+
+
 @with_setup(blank_setup)
 def test_from_dict():
     dag.from_dict({'a': ['b', 'c'],

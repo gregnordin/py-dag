@@ -16,9 +16,11 @@ class DAGValidationError(Exception):
 class DAG(object):
     """ Directed acyclic graph implementation. """
 
-    def __init__(self):
-        """ Construct a new DAG with no nodes or edges. """
-        self.reset_graph()
+    def __init__(self, graph_dict=None):
+        """ Construct a new DAG with optional graph dict, otherwise with no nodes or edges."""
+        if graph_dict is None:
+            graph_dict = {}
+        self.from_dict(graph_dict)
 
     def add_node(self, node_name, graph=None):
         """ Add a node if it does not exist yet, or error out. """
